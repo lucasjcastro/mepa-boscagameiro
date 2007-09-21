@@ -235,6 +235,51 @@ class Mepa
 		void
 		PARA();
 		
+		/**
+		 * Carrega valor do topo da pilha
+		 * @param k Nivel lexico
+		 * @param n Deslocamento
+		 */
+		void
+		CRVL( int k, int n );
+		
+		/**
+		 * Armazena valor do topo da pilha 
+		 * em algum lugar q ainda nao sei
+		 * @param k Nivel lexico
+		 * @param n Deslocamento 
+		 */
+		void
+		ARMZ( int k, int n );
+		
+		/**
+		 * Chama procedimento
+		 * @param L Procedimento
+		 */
+		void
+		CHPR( int L );
+		
+		/**
+		 * Entra no procedimento
+		 * @param k Nivel lexico do procedimento
+		 */
+		void
+		ENPR( int k );
+		
+		/**
+		 * Retorna procedimento
+		 * @param k Nivel lexico do procedimento
+		 */
+		void
+		RTPR( int k );
+		
+		/**
+		 * Desaloca memoria
+		 * @param n Quantidade de memoria a ser desalocada
+		 */
+		void
+		DMEN( int n );
+		
 	public:
 	
 		/** 
