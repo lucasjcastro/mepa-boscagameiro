@@ -1,4 +1,5 @@
 #include "Mepa.h"
+#include <math.h>
 
 /* ---- Inicio dos metodos publicos ---- */
 
@@ -45,6 +46,18 @@ Mepa::popM()
 {
 	s--;
 	M.pop_back();
+}
+
+void
+Mepa::pushD()
+{
+	D.push_back();
+}
+
+void
+Mepa::popD()
+{
+	D.pop_back();
 }
 
 void
@@ -217,7 +230,8 @@ Mepa::CMAG()
 void
 Mepa::ARMZ( int n )
 {
-	
+	M[n] = M[s];
+	popM();
 }
 
 void
@@ -229,7 +243,15 @@ Mepa::DSVS( int p )
 void
 Mepa::DSVF( int p )
 {
-	
+	if(M[s] == 0)
+	{
+		this->PC = p;
+	}
+	else
+	{
+		this->PC++; 
+	}
+	popM();
 }
 
 void
@@ -242,7 +264,17 @@ Mepa::NADA()
 void
 Mepa::LEIT()
 {
+	int i;
+	int v;
 	
+	pushM();
+	this->PC++;
+	
+	for(i=0;i<P[PC].size();i++)
+	{
+		/* transformando a string em um inteiro */
+		v += atoi(&P[PC][i]) * (int) pow(10,(P[PC].size()-i-1));
+	}
 }
 
 void
@@ -269,6 +301,8 @@ void
 Mepa::INPP()
 {
 	this->s = -1;
+	pushD();
+	D[0] = 0;
 }
 
 void
