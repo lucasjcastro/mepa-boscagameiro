@@ -214,4 +214,71 @@ Mepa::CMAG()
 	this->popM();
 }
 
+
+void
+Mepa::ARMZ( int n )
+{
+	
+}
+
+void
+Mepa::DSVS( int p )
+{
+	
+}
+
+void
+Mepa::DSVF( int p )
+{
+	
+}
+
+void
+Mepa::NADA()
+{
+	
+}
+
+void
+Mepa::LEIT()
+{
+	
+}
+
+void
+Mepa::IMPR()
+{
+	
+}
+
+void
+Mepa::IMPL()
+{
+	
+}
+
+void
+Mepa::IMPC()
+{
+	
+}
+
+void
+Mepa::INPP()
+{
+	
+}
+
+void
+Mepa::AMEM( int m )
+{
+	
+}
+
+void
+Mepa::PARA()
+{
+	
+}
+
 /* ---- Fim dos metodos privados ---- */
