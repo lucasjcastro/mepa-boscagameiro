@@ -48,6 +48,12 @@ class Mepa
 		void
 		popM();
 		
+		void
+		pushD();
+		
+		void
+		popD();
+		
 		/**
 		 * Incrementa o ponteiro do PC, se possivel
 		 */
