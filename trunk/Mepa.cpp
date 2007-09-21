@@ -1,5 +1,6 @@
 #include "Mepa.h"
-#include <fstream>
+
+/* ---- Inicio dos metodos publicos ---- */
 
 Mepa::Mepa( const char* vNome )
 {
@@ -13,26 +14,34 @@ Mepa::~Mepa()
 {
 }
 
+/* ---- Fim dos metodos publicos ---- */
+
+/* ---- Inicio dos metodos privados ---- */
+
 void 
 Mepa::proximaInstrucao()
 {
 	this->mPC++;
 }
-		
+
 void
-Mepa::proximaInstrucao(int vNovaPos)
+Mepa::proximaInstrucao(int vNovaPosicao)
 {
-	this->mPC = vNovaPos;
+	this->mPC = vNovaPosicao;
 }
 
 void
 Mepa::pushM()
 {
-	
+	mS++;
+	mM.push_back(VAZIO);
 }
 
 void
 Mepa::CRCT(int vK)
 {
-	
+	this->pushM();
+	mM[mS] = vK;
 }
+
+/* ---- Fim dos metodos privados ---- */
