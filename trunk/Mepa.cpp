@@ -44,7 +44,8 @@ Mepa::pushM()
 void
 Mepa::popM()
 {
-	
+	mS--;
+	mM.pop_back();
 }
 
 void
@@ -57,7 +58,8 @@ Mepa::CRCT(int vK)
 void
 Mepa::CRVL(int n)
 {
-	
+	this->pushM();
+	mM[mS] = mM[n];
 }
 
 void
@@ -69,7 +71,8 @@ Mepa::SOMA()
 void
 Mepa::SUBT()
 {
-	
+	mM[mS-1] = mM[mS-1] - mM[mS];
+	this->popM();
 }
 		
 void
@@ -81,7 +84,8 @@ Mepa::MULT()
 void
 Mepa::DIV()
 {
-	
+	mM[mS-1] = mM[mS-1] / mM[mS];
+	this->popM();
 }
 		
 void
