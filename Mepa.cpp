@@ -99,7 +99,15 @@ Mepa::INVR()
 void
 Mepa::CONJ()
 {
-	
+	if ( M[s-1]=1 && M[s]=1 )
+	{
+		M[s-1] = 1;
+	}
+	else
+	{
+		M[s-1] = 0;
+	}
+	this->popM();
 }
 		
 void
@@ -119,7 +127,7 @@ Mepa::DISJ()
 void
 Mepa::NEGA()
 {
-	
+	M[s] = 1 - M[s];
 }
 		
 void
@@ -131,7 +139,15 @@ Mepa::CMME()
 void
 Mepa::CMMA()
 {
-	
+	if ( M[s-1] > M[s] )
+	{
+		M[s-1] = 1;
+	}
+	else
+	{
+		M[s-1] = 0;
+	}
+	this->popM();
 }
 		
 void
@@ -143,7 +159,15 @@ Mepa::CMIG()
 void
 Mepa::CMDG()
 {
-	
+	if ( M[s-1] != M[s] )
+	{
+		M[s-1] = 1;
+	}
+	else
+	{
+		M[s-1] = 0;
+	}
+	this->popM();
 }
 		
 void
@@ -155,7 +179,15 @@ Mepa::CMEG()
 void
 Mepa::CMAG()
 {
-	
+	if ( M[s-1] >= M[s] )
+	{
+		M[s-1] = 1;
+	}
+	else
+	{
+		M[s-1] = 0;
+	}
+	this->popM();
 }
 
 /* ---- Fim dos metodos privados ---- */
