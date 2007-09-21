@@ -320,4 +320,55 @@ Mepa::PARA()
 	
 }
 
+void
+Mepa::CRVL( int k, int n )
+{
+	this->pushM();
+	M[s] = M[D[k] + n];
+}
+
+void
+Mepa::ARMZ( int k, int n )
+{
+	M[D[k]+n] = M[s];
+	this->popM();
+}
+
+void
+Mepa::CHPR( int L )
+{
+	this->pushM();
+	M[s] = PC + 1;
+	PC = L;
+	/* lembrar de arrumar essa merda pq agente
+	 * tá recebendo o endereco nao o procedimento em si */
+}
+
+void
+Mepa::ENPR( int k )
+{
+	this->pushM();
+	M[s] = D[k];
+	this->pushM();
+	D[k] = s;
+}
+
+void
+Mepa::RTPR( int k )
+{
+	D[k] = M[s];
+	PC = M[s-1];
+	this->popM();
+	this->popM();
+}
+
+void
+Mepa::DMEN( int n )
+{
+	for ( ; n > 0; n-- )
+	{
+		this->popM();
+	}
+}
+
 /* ---- Fim dos metodos privados ---- */
