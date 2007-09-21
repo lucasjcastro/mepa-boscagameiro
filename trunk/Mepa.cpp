@@ -133,7 +133,15 @@ Mepa::NEGA()
 void
 Mepa::CMME()
 {
-	
+	if(M[s-1] < M[s])
+	{
+		M[s-1] = 1;
+	}
+	else
+	{
+		M[s-1] = 0;
+	}
+	popM();
 }
 		
 void
@@ -153,7 +161,15 @@ Mepa::CMMA()
 void
 Mepa::CMIG()
 {
-	
+	if(M[s-1] == M[s])
+	{
+		M[s-1] = 1;
+	}
+	else
+	{
+		M[s-1] = 0;
+	}
+	popM();
 }
 		
 void
@@ -173,7 +189,15 @@ Mepa::CMDG()
 void
 Mepa::CMEG()
 {
-	
+	if(M[s-1] <= M[s])
+	{
+		M[s-1] = 1;
+	}
+	else
+	{
+		M[s-1] = 0;
+	}
+	popM();
 }
 		
 void
