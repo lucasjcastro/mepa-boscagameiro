@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <fstream>
 
 class Mepa
 {
@@ -27,6 +28,10 @@ class Mepa
 		/* endereco do topo da pilha */
 		int
 		mS;
+		
+		/* arquivo de entrada da MEPA */
+		std::fstream
+		mArqEntrada;
 	
 	public:
 	
@@ -34,7 +39,7 @@ class Mepa
 		 * Cria uma instancia de Mepa
 		 * @param nome do arquivo de entrada
 		 */
-		Mepa(char*);
+		Mepa( const char* );
 	
 		virtual
 		~Mepa();

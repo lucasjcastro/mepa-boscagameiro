@@ -1,7 +1,12 @@
 #include "Mepa.h"
+#include <fstream>
 
-Mepa::Mepa(char*)
+Mepa::Mepa( const char* vNome )
 {
+	this->mPC = -1;
+	this->mS = -1;
+	
+	this->mArqEntrada.open( vNome, std::fstream::in );
 }
 
 Mepa::~Mepa()
