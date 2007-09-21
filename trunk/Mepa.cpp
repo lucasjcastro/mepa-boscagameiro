@@ -6,7 +6,6 @@ Mepa::Mepa( const char* vNome )
 {
 	/* seta ponteiros para nulo */
 	this->PC = -1;
-	this->s = -1;
 	
 	/* abre arquivo de entrada */
 	this->mArqEntrada.open( vNome, std::fstream::in );
@@ -99,7 +98,7 @@ Mepa::INVR()
 void
 Mepa::CONJ()
 {
-	if ( M[s-1]=1 && M[s]=1 )
+	if ( M[s-1] == 1 && M[s] == 1 )
 	{
 		M[s-1] = 1;
 	}
@@ -224,7 +223,7 @@ Mepa::ARMZ( int n )
 void
 Mepa::DSVS( int p )
 {
-	
+	PC = p;
 }
 
 void
@@ -236,7 +235,8 @@ Mepa::DSVF( int p )
 void
 Mepa::NADA()
 {
-	
+	/* nao faz nada mesmo, apesar de eu achar 
+	 * q precisa incrementar o I, enfim...*/
 }
 
 void
@@ -248,31 +248,36 @@ Mepa::LEIT()
 void
 Mepa::IMPR()
 {
-	
+	std::cout << M[s];
+	this->popM();
 }
 
 void
 Mepa::IMPL()
 {
-	
+	std::cout << M[s] << std::endl;
+	this->popM();
 }
 
 void
 Mepa::IMPC()
 {
-	
+	std::cout << toascii( M[s] );
 }
 
 void
 Mepa::INPP()
 {
-	
+	this->s = -1;
 }
 
 void
 Mepa::AMEM( int m )
 {
-	
+	for ( ; m > 0; m-- )
+	{
+		this->pushM();
+	}
 }
 
 void
