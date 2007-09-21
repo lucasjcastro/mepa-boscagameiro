@@ -52,6 +52,19 @@ class Mepa
 		void
 		proximaInstrucao(int);
 		
+		/**
+		 * Aloca uma nova posicao na pilha M e incrementa S
+		 */
+		void
+		pushM();
+		
+		/**
+		 * Carrega a constante na pilha
+		 * @param constante a ser carregada
+		 */
+		void
+		CRCT(int k);
+		
 };
 
 #endif /*MEPA_H_*/
