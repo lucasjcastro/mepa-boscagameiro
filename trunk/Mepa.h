@@ -9,15 +9,15 @@ class Mepa
 	private:
 	
 		/* Instrucoes do Programa */
-		vector<std::string>
+		std::vector<std::string>
 		mP;
 		
 		/* Memoria do Programa */
-		vector<int>
+		std::vector<int>
 		mM;
 		
 		/* Registradores Base, apontadores para M */
-		vector<int>
+		std::vector<int>
 		mD;
 		
 		/* ponteiro pra proxima instrucao */
@@ -34,7 +34,7 @@ class Mepa
 		 * Cria uma instancia de Mepa
 		 * @param nome do arquivo de entrada
 		 */
-		Mepa(char[]);
+		Mepa(char*);
 	
 		virtual
 		~Mepa();
