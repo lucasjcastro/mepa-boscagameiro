@@ -4,14 +4,18 @@
 
 Mepa::Mepa( const char* vNome )
 {
+	/* seta ponteiros para nulo */
 	this->mPC = -1;
 	this->mS = -1;
 	
+	/* abre arquivo de entrada */
 	this->mArqEntrada.open( vNome, std::fstream::in );
 }
 
 Mepa::~Mepa()
 {
+	/* fecha arquivo de entrada */
+	this->mArqEntrada.close();
 }
 
 /* ---- Fim dos metodos publicos ---- */
