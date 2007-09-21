@@ -158,6 +158,76 @@ class Mepa
 		void
 		CMAG();
 	
+		/**
+		 * Armazena valor na pilha
+		 * @param n valor armazenado
+		 */
+		void
+		ARMZ( int n );
+		
+		/**
+		 * Desvio incondicional
+		 * @param p Posicao a ser desviada
+		 */
+		void
+		DSVS( int p );
+		
+		/**
+		 * Desvio condicional se falso
+		 * @param p Posicao a ser desviada 
+		 */
+		void
+		DSVF( int p );
+		
+		/**
+		 * Nao faz nada 
+		 */
+		void
+		NADA();
+		
+		/**
+		 * Le proximo valor de entrada
+		 */
+		void
+		LEIT();
+		
+		/**
+		 * Imprime valor do topo da pilha 
+		 */
+		void
+		IMPR();
+		
+		/**
+		 * Imprime valor do topo da pilha e pula linha 
+		 */
+		void
+		IMPL();
+		
+		/**
+		 * Imprime caracter
+		 */
+		void
+		IMPC();
+		
+		/**
+		 * Inicia programa principal
+		 */
+		void
+		INPP();
+		
+		/**
+		 * Aloca quantidade de memoria requisitada
+		 * @param m Memoria a ser alocada
+		 */
+		void
+		AMEM( int m );
+		
+		/**
+		 * Para execucao do programa
+		 */
+		void
+		PARA();
+		
 	public:
 	
 		/** 
