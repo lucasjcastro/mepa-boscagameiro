@@ -13,23 +13,23 @@ class Mepa
 	
 		/* Instrucoes do Programa */
 		std::vector<std::string>
-		mP;
+		P;
 		
 		/* Memoria do Programa */
 		std::vector<int>
-		mM;
+		M;
 		
 		/* Registradores Base, apontadores para M */
 		std::vector<int>
-		mD;
+		D;
 		
 		/* ponteiro pra proxima instrucao */
 		int
-		mPC;
+		PC;
 		
 		/* endereco do topo da pilha */
 		int
-		mS;
+		s;
 		
 		/* arquivo de entrada da MEPA */
 		std::fstream

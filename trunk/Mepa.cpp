@@ -5,8 +5,8 @@
 Mepa::Mepa( const char* vNome )
 {
 	/* seta ponteiros para nulo */
-	this->mPC = -1;
-	this->mS = -1;
+	this->PC = -1;
+	this->s = -1;
 	
 	/* abre arquivo de entrada */
 	this->mArqEntrada.open( vNome, std::fstream::in );
@@ -25,73 +25,75 @@ Mepa::~Mepa()
 void 
 Mepa::proximaInstrucao()
 {
-	this->mPC++;
+	this->PC++;
 }
 
 void
 Mepa::proximaInstrucao(int vNovaPosicao)
 {
-	this->mPC = vNovaPosicao;
+	this->PC = vNovaPosicao;
 }
 
 void
 Mepa::pushM()
 {
-	mS++;
-	mM.push_back(VAZIO);
+	s++;
+	M.push_back(VAZIO);
 }
 
 void
 Mepa::popM()
 {
-	mS--;
-	mM.pop_back();
+	s--;
+	M.pop_back();
 }
 
 void
 Mepa::CRCT(int vK)
 {
 	this->pushM();
-	mM[mS] = vK;
+	M[s] = vK;
 }
 
 void
 Mepa::CRVL(int n)
 {
 	this->pushM();
-	mM[mS] = mM[n];
+	M[s] = M[n];
 }
 
 void
 Mepa::SOMA()
 {
-	
+	M[s-1] += M[s];
+	popM();
 }
 		
 void
 Mepa::SUBT()
 {
-	mM[mS-1] = mM[mS-1] - mM[mS];
+	M[s-1] = M[s-1] - M[s];
 	this->popM();
 }
 		
 void
 Mepa::MULT()
 {
-	
+	M[s-1] *= M[s];
+	popM();
 }
 		
 void
 Mepa::DIV()
 {
-	mM[mS-1] = mM[mS-1] / mM[mS];
+	M[s-1] = M[s-1] / M[s];
 	this->popM();
 }
 		
 void
 Mepa::INVR()
 {
-	
+	M[s] = - M[s];
 }
 		
 void
@@ -103,7 +105,15 @@ Mepa::CONJ()
 void
 Mepa::DISJ()
 {
-	
+	if(M[s-1] == 1 || M[s] == 1)
+	{
+		M[s-1] = 1;
+	}
+	else
+	{
+		M[s-1] = 0;
+	}
+	popM();
 }
 		
 void
