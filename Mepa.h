@@ -5,6 +5,8 @@
 #include <string>
 #include <fstream>
 
+#define VAZIO -1
+
 class Mepa
 {
 	private:
@@ -32,17 +34,12 @@ class Mepa
 		/* arquivo de entrada da MEPA */
 		std::fstream
 		mArqEntrada;
-	
-	public:
-	
-		/** 
-		 * Cria uma instancia de Mepa
-		 * @param nome do arquivo de entrada
+		
+		/**
+		 * Aloca uma nova posicao na pilha M e incrementa S
 		 */
-		Mepa( const char* );
-	
-		virtual
-		~Mepa();
+		void
+		pushM();
 		
 		/**
 		 * Incrementa o ponteiro do PC, se possivel
@@ -58,17 +55,22 @@ class Mepa
 		proximaInstrucao(int);
 		
 		/**
-		 * Aloca uma nova posicao na pilha M e incrementa S
-		 */
-		void
-		pushM();
-		
-		/**
 		 * Carrega a constante na pilha
 		 * @param constante a ser carregada
 		 */
 		void
 		CRCT(int k);
+	
+	public:
+	
+		/** 
+		 * Cria uma instancia de Mepa
+		 * @param nome do arquivo de entrada
+		 */
+		Mepa(const char*);
+	
+		virtual
+		~Mepa();
 		
 };
 
