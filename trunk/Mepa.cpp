@@ -3,8 +3,12 @@
 
 /* ---- Inicio dos metodos publicos ---- */
 
-Mepa::Mepa( const char* vNome )
+Mepa::Mepa( const char* vNome, int tamD, int tamP, int tamM )
 {
+	D.resize(tamD,VAZIO);
+	P.resize(tamP);
+	M.resize(tamM,VAZIO);
+	
 	/* seta ponteiros para nulo */
 	this->PC = -1;
 	
@@ -34,43 +38,18 @@ Mepa::proximaInstrucao(int vNovaPosicao)
 	this->PC = vNovaPosicao;
 }
 
-void
-Mepa::pushM()
-{
-	s++;
-	M.push_back(VAZIO);
-}
-
-void
-Mepa::popM()
-{
-	s--;
-	M.pop_back();
-}
-
-void
-Mepa::pushD()
-{
-	D.push_back();
-}
-
-void
-Mepa::popD()
-{
-	D.pop_back();
-}
 
 void
 Mepa::CRCT(int vK)
 {
-	this->pushM();
+	s++;
 	M[s] = vK;
 }
 
 void
 Mepa::CRVL(int n)
 {
-	this->pushM();
+	s++;
 	M[s] = M[n];
 }
 
@@ -78,28 +57,28 @@ void
 Mepa::SOMA()
 {
 	M[s-1] += M[s];
-	popM();
+	s--;
 }
 		
 void
 Mepa::SUBT()
 {
 	M[s-1] = M[s-1] - M[s];
-	this->popM();
+	s--;
 }
 		
 void
 Mepa::MULT()
 {
 	M[s-1] *= M[s];
-	popM();
+	s--;
 }
 		
 void
 Mepa::DIV()
 {
 	M[s-1] = M[s-1] / M[s];
-	this->popM();
+	s--;
 }
 		
 void
@@ -119,7 +98,7 @@ Mepa::CONJ()
 	{
 		M[s-1] = 0;
 	}
-	this->popM();
+	s--;
 }
 		
 void
@@ -133,7 +112,7 @@ Mepa::DISJ()
 	{
 		M[s-1] = 0;
 	}
-	popM();
+	s--;
 }
 		
 void
@@ -153,7 +132,7 @@ Mepa::CMME()
 	{
 		M[s-1] = 0;
 	}
-	popM();
+	s--;
 }
 		
 void
@@ -167,7 +146,7 @@ Mepa::CMMA()
 	{
 		M[s-1] = 0;
 	}
-	this->popM();
+	s--;
 }
 		
 void
@@ -181,7 +160,7 @@ Mepa::CMIG()
 	{
 		M[s-1] = 0;
 	}
-	popM();
+	s--;
 }
 		
 void
@@ -195,7 +174,7 @@ Mepa::CMDG()
 	{
 		M[s-1] = 0;
 	}
-	this->popM();
+	s--;
 }
 		
 void
@@ -209,7 +188,7 @@ Mepa::CMEG()
 	{
 		M[s-1] = 0;
 	}
-	popM();
+	s--;
 }
 		
 void
@@ -223,7 +202,7 @@ Mepa::CMAG()
 	{
 		M[s-1] = 0;
 	}
-	this->popM();
+	s--;
 }
 
 
@@ -231,7 +210,7 @@ void
 Mepa::ARMZ( int n )
 {
 	M[n] = M[s];
-	popM();
+	s--;
 }
 
 void
@@ -251,14 +230,14 @@ Mepa::DSVF( int p )
 	{
 		this->PC++; 
 	}
-	popM();
+	s--;
 }
 
 void
 Mepa::NADA()
 {
 	/* nao faz nada mesmo, apesar de eu achar 
-	 * q precisa incrementar o I, enfim...*/
+	 * q precisa incrementar o PC, enfim...*/
 }
 
 void
@@ -267,28 +246,29 @@ Mepa::LEIT()
 	int i;
 	int v;
 	
-	pushM();
+	s++;
 	this->PC++;
 	
-	for(i=0;i<P[PC].size();i++)
+	for(i=0;i < (int) P[PC].size(); i++)
 	{
 		/* transformando a string em um inteiro */
 		v += atoi(&P[PC][i]) * (int) pow(10,(P[PC].size()-i-1));
 	}
+	M[s] = v;
 }
 
 void
 Mepa::IMPR()
 {
 	std::cout << M[s];
-	this->popM();
+	s--;
 }
 
 void
 Mepa::IMPL()
 {
 	std::cout << M[s] << std::endl;
-	this->popM();
+	s--;
 }
 
 void
@@ -301,17 +281,13 @@ void
 Mepa::INPP()
 {
 	this->s = -1;
-	pushD();
 	D[0] = 0;
 }
 
 void
 Mepa::AMEM( int m )
 {
-	for ( ; m > 0; m-- )
-	{
-		this->pushM();
-	}
+	s += m;
 }
 
 void
@@ -323,7 +299,7 @@ Mepa::PARA()
 void
 Mepa::CRVL( int k, int n )
 {
-	this->pushM();
+	s++;
 	M[s] = M[D[k] + n];
 }
 
@@ -331,13 +307,13 @@ void
 Mepa::ARMZ( int k, int n )
 {
 	M[D[k]+n] = M[s];
-	this->popM();
+	s--;
 }
 
 void
 Mepa::CHPR( int L )
 {
-	this->pushM();
+	s++;
 	M[s] = PC + 1;
 	PC = L;
 	/* lembrar de arrumar essa merda pq agente
@@ -347,10 +323,9 @@ Mepa::CHPR( int L )
 void
 Mepa::ENPR( int k )
 {
-	this->pushM();
+	s++;
 	M[s] = D[k];
-	this->pushM();
-	D[k] = s;
+	D[k] = s + 1;
 }
 
 void
@@ -358,17 +333,48 @@ Mepa::RTPR( int k )
 {
 	D[k] = M[s];
 	PC = M[s-1];
-	this->popM();
-	this->popM();
+	s -= 2;
 }
 
 void
 Mepa::DMEN( int n )
 {
-	for ( ; n > 0; n-- )
-	{
-		this->popM();
-	}
+	s -= n;
+}
+
+void
+Mepa::RTPR( int k, int n )
+{    
+	D[k] = M[s];
+	PC = M[s-1];
+	s -= (n+2);
+}
+		
+void
+Mepa::CRVI( int k, int n )
+{
+	s++;
+	M[s] = M[ M[D[k] + n] ];
+}
+		
+void
+Mepa::ARMI( int k, int n )
+{
+	M[ M[D[k]+n] ] = M[s];
+	s--;
+}
+		
+void
+Mepa::CREN( int k, int n )
+{
+	s++;
+	M[s] = D[k] + n;
+}
+
+void
+Mepa::MOSM()
+{
+	
 }
 
 /* ---- Fim dos metodos privados ---- */
