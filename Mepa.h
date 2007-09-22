@@ -37,24 +37,6 @@ class Mepa
 		mArqEntrada;
 		
 		/**
-		 * Aloca uma nova posicao na pilha M e incrementa S
-		 */
-		void
-		pushM();
-		
-		/**
-		 * Desaloca uma posicao na pilha M e decrementa S
-		 */
-		void
-		popM();
-		
-		void
-		pushD();
-		
-		void
-		popD();
-		
-		/**
 		 * Incrementa o ponteiro do PC, se possivel
 		 */
 		void
@@ -280,13 +262,46 @@ class Mepa
 		void
 		DMEN( int n );
 		
+		/**
+		 * Retorna procedimento
+		 * @param k Nivel lexico do procedimento
+		 * @param n numero de argumentos
+		 */
+		void
+		RTPR( int k, int n );
+		
+		/**
+		 * Carrega valor indiretp
+		 */
+		void
+		CRVI( int k, int n );
+		
+		/**
+		 * Armazena valor indireto
+		 */
+		void
+		ARMI( int k, int n );
+		
+		/**
+		 * Carrega Endereço
+		 */
+		void
+		CREN( int k, int n );
+		
+		/**
+		 * Mostra memoria de acordo com
+		 * o arquivo a16-t02
+		 */
+		void
+		MOSM();
+		
 	public:
 	
 		/** 
 		 * Cria uma instancia de Mepa
 		 * @param nome do arquivo de entrada
 		 */
-		Mepa(const char*);
+		Mepa(const char*,int,int,int);
 	
 		virtual
 		~Mepa();
