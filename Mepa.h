@@ -299,13 +299,62 @@ class Mepa
 	
 		/** 
 		 * Cria uma instancia de Mepa
-		 * @param nome do arquivo de entrada
+		 * @param Nome do arquivo de entrada
+		 * @param Nome do arquivo de saida
+		 * @param 
+		 * @param
+		 * @param
 		 */
-		Mepa(const char*,int,int,int);
+		Mepa(const char*, const char*, int,int,int);
+		
+		/** 
+		 * Cria uma instancia de Mepa
+		 * @param Nome do arquivo de entrada
+		 * @param 
+		 * @param
+		 * @param
+		 */
+		Mepa(const char*, int,int,int);
+		
+		Mepa();
 	
 		virtual
 		~Mepa();
 		
+		/**
+		 * Seta nome do arquivo de entrada a ser lido
+		 * @param Nome do arquivo de entrada
+		 */
+		void
+		setNomeArqEntrada( const char* );
+		
+		/**
+		 * Seta nome do arquivo de saida a ser aberto
+		 * @param Nome do arquivo de saida
+		 */
+		void
+		setNomeArqSaida( const char* );
+		
+		/**
+		 * Seta numero de registradores base
+		 * @param Numero de registradores base
+		 */
+		void
+		setNumRegBase( int );
+		
+		/**
+		 * Seta tamanho da memoria do programa
+		 * @param Tamanho da memoria do programa
+		 */
+		void
+		setTamMemPrograma( int );
+		
+		/**
+		 * Seta tamanho da memoria dos dados
+		 * @param Tamanho da memoria dos dados 
+		 */
+		void
+		setTamMemDados( int );
 };
 
 #endif /*MEPA_H_*/

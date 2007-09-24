@@ -3,13 +3,19 @@
 
 /* ---- Inicio dos metodos publicos ---- */
 
+Mepa::Mepa()
+{
+	/* seta ponteiro para nulo */
+	this->PC = -1;
+}
+
 Mepa::Mepa( const char* vNome, int tamD, int tamP, int tamM )
 {
 	D.resize(tamD,VAZIO);
 	P.resize(tamP);
 	M.resize(tamM,VAZIO);
 	
-	/* seta ponteiros para nulo */
+	/* seta ponteiro para nulo */
 	this->PC = -1;
 	
 	/* abre arquivo de entrada */

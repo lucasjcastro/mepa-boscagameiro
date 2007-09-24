@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Mepa.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +10,7 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 	int
-	numRegisBase;
+	numRegBase;
 	
 	int
 	tamMemPrograma;
@@ -19,6 +20,9 @@ int main(int argc, char *argv[])
 	
 	int
 	numDoArqSaida;
+	
+	Mepa
+	mepa;
 	
 	/* iterador comeca em 1 pq o argv[0] eh o nome do programa */
 	for ( int i = 1; i < argc; i++ )
@@ -47,7 +51,7 @@ int main(int argc, char *argv[])
 							"Digite 'mepa -?' para a lista completa de opcoes." << std::endl;
 						return 0;
 					}
-					numRegisBase = atoi(argv[i]);
+					numRegBase = atoi(argv[i]);
 					break;
 					
 				case 'P':
@@ -123,7 +127,7 @@ int main(int argc, char *argv[])
 					break;
 					
 				default:
-					std::cout << "Parametro desconhecido. " <<
+					std::cout << "Parametro " << i + 1 << " desconhecido. " <<
 							"Digite 'mepa -?' para a lista completa de opcoes." << std::endl;
 					return 0;
 			
@@ -131,6 +135,13 @@ int main(int argc, char *argv[])
 		}
 		else if ( 1 )// verificar se o parametro é do tipo *.mep e iniciar a mepa.
 		{
+			/* verifica se não ha parametros sobrando */
+			if ( argc != i + 1 )
+			{
+				std::cout << "Numero excedente de parametros. " << 
+					"Digite 'mepa -?' para a lista completa de opcoes." << std::endl;
+				return 0;
+			}
 			
 		}
 		else
