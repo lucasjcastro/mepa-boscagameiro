@@ -3,13 +3,7 @@
 
 /* ---- Inicio dos metodos publicos ---- */
 
-Mepa::Mepa()
-{
-	/* seta ponteiro para nulo */
-	this->PC = -1;
-}
-
-Mepa::Mepa( const char* vNome, int tamD, int tamP, int tamM )
+Mepa::Mepa( const char* vNomeEntrada, int tamD, int tamP, int tamM )
 {
 	D.resize(tamD,VAZIO);
 	P.resize(tamP);
@@ -18,8 +12,26 @@ Mepa::Mepa( const char* vNome, int tamD, int tamP, int tamM )
 	/* seta ponteiro para nulo */
 	this->PC = -1;
 	
+	this->pRelatorio = new Printer();
+	
 	/* abre arquivo de entrada */
-	this->mArqEntrada.open( vNome, std::fstream::in );
+	this->mArqEntrada.open( vNomeEntrada, std::fstream::in );
+}
+
+Mepa::Mepa( const char* vNomeEntrada, const char* vNomeSaida, int tamD, int tamP, int tamM )
+{
+	D.resize(tamD,VAZIO);
+	P.resize(tamP);
+	M.resize(tamM,VAZIO);
+	
+	/* seta ponteiro para nulo */
+	this->PC = -1;
+	
+	this->pRelatorio = new Printer(vNomeSaida);
+	
+	/* abre arquivo de entrada */
+	this->mArqEntrada.open( vNomeEntrada, std::fstream::in );
+	// lembrar de passar o nome do arquivo de saida para a classe de imprimir a merda la
 }
 
 Mepa::~Mepa()
