@@ -21,9 +21,6 @@ int main(int argc, char *argv[])
 	int
 	numDoArqSaida;
 	
-	Mepa
-	mepa;
-	
 	/* iterador comeca em 1 pq o argv[0] eh o nome do programa */
 	for ( int i = 1; i < argc; i++ )
 	{
@@ -109,8 +106,8 @@ int main(int argc, char *argv[])
 					<< "-M n" << "\t" << "Tamanho n em palavras de 16 bits da memoria de dados" << std::endl
 					<< "-I" << "\t" << "Identificacao da equipe" << std::endl
 					<< "-?" << "\t" << "Lista completa dos comandos" << std::endl
-					<< "-R foo" << "\t" << "Salvar no arquivo foo o resultado da instrucao MOSM. " <<
-							"Caso nao seja utilizado, o resultado e mostrado na saida padrao" << std::endl;
+					<< "-R foo" << "\t" << "Salvar no arquivo foo o resultado da instrucao MOSM. " << std::endl
+								<< '\t' << "Caso nao seja utilizado, o resultado e mostrado na saida padrao" << std::endl;
 					
 					return 0;
 					
@@ -151,6 +148,11 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 	}
+	
+	//iniciar mepa, etc...
+
+	Mepa
+	magaiver();
 	
 	return 0;
 }

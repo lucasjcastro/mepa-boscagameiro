@@ -6,6 +6,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "Printer.h"
+
 #define VAZIO -1
 
 class Mepa
@@ -35,6 +37,10 @@ class Mepa
 		/* arquivo de entrada da MEPA */
 		std::fstream
 		mArqEntrada;
+		
+		/* imprimirá relatorio */
+		Printer*
+		pRelatorio;
 		
 		/**
 		 * Incrementa o ponteiro do PC, se possivel
@@ -301,23 +307,21 @@ class Mepa
 		 * Cria uma instancia de Mepa
 		 * @param Nome do arquivo de entrada
 		 * @param Nome do arquivo de saida
-		 * @param 
-		 * @param
-		 * @param
+		 * @param Numero de registradores base
+		 * @param Tamanho da memoria do programa
+		 * @param Tamanho da memoria dos dados
 		 */
 		Mepa(const char*, const char*, int,int,int);
 		
 		/** 
 		 * Cria uma instancia de Mepa
 		 * @param Nome do arquivo de entrada
-		 * @param 
-		 * @param
-		 * @param
+		 * @param Numero de registradores base
+		 * @param Tamanho da memoria do programa
+		 * @param Tamanho da memoria dos dados
 		 */
 		Mepa(const char*, int,int,int);
 		
-		Mepa();
-	
 		virtual
 		~Mepa();
 		
