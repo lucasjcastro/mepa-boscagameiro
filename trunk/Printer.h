@@ -2,6 +2,9 @@
 #define PRINTER_H_
 #include <fstream>
 #include <iostream>
+#include <vector>
+
+#define VAZIO -1
 
 class Printer
 {
@@ -39,10 +42,30 @@ class Printer
 		
 		/**
 		 * Imprime o end. do topo da pilha
-		 * @param End. do topo da pilha 
+		 * @param End. do topo da pilha (s)
 		 */
 		void
 		printS( int );
+		
+		/**
+		 * Imprime os registradores base
+		 * @param Ponteiro para o vetor (D) registradores base
+		 */
+		void
+		printD( std::vector<int>* );
+		
+		/**
+		 * Imprime os valores da memoria
+		 * @param Ponteiro para o vetor (M) memoria
+		 * @param End. do topo da pilha (s)
+		 */
+		void
+		printM( std::vector<int>*, int );
+		
+		/* Imprime o rodape... */
+		
+		void
+		printRodape();
 };
 
 #endif /*PRINTER_H_*/

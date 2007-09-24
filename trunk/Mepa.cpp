@@ -395,7 +395,12 @@ Mepa::CREN( int k, int n )
 void
 Mepa::MOSM()
 {
-	
+	pRelatorio->printCabecalho();
+	pRelatorio->printPC( PC );
+	pRelatorio->printS( s );
+	pRelatorio->printD( &D );
+	pRelatorio->printM( &M, s );
+	pRelatorio->printRodape();
 }
 
 /* ---- Fim dos metodos privados ---- */
