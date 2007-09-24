@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include "Mepa.h"
 
 int main(int argc, char *argv[])
@@ -10,16 +11,22 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 	int
-	numRegBase;
+	tamD;
 	
 	int
-	tamMemPrograma;
+	tamP;
 	
 	int
-	tamMemDados;
+	tamM;
 	
 	int
-	numDoArqSaida;
+	numDoArqEntrada;
+	
+	int
+	numDoArqSaida = 0;
+	
+	Mepa*
+	magaiver;
 	
 	/* iterador comeca em 1 pq o argv[0] eh o nome do programa */
 	for ( int i = 1; i < argc; i++ )
@@ -48,7 +55,7 @@ int main(int argc, char *argv[])
 							"Digite 'mepa -?' para a lista completa de opcoes." << std::endl;
 						return 0;
 					}
-					numRegBase = atoi(argv[i]);
+					tamD = atoi(argv[i]);
 					break;
 					
 				case 'P':
@@ -66,7 +73,7 @@ int main(int argc, char *argv[])
 							"Digite 'mepa -?' para a lista completa de opcoes." << std::endl;
 						return 0;
 					}				
-					tamMemPrograma = atoi(argv[i]);
+					tamP = atoi(argv[i]);
 					break;
 					
 				case 'M':
@@ -84,7 +91,7 @@ int main(int argc, char *argv[])
 							"Digite 'mepa -?' para a lista completa de opcoes." << std::endl;
 						return 0;
 					}
-					tamMemDados = atoi(argv[i]);
+					tamM = atoi(argv[i]);
 					break;
 					
 				case 'I':
@@ -130,29 +137,46 @@ int main(int argc, char *argv[])
 			
 			}
 		}
-		else if ( 1 )// verificar se o parametro é do tipo *.mep e iniciar a mepa.
+		else
 		{
-			/* verifica se não ha parametros sobrando */
-			if ( argc != i + 1 )
+
+			if ( 1 )// verificar se o parametro é do tipo *.mep e iniciar a mepa.
 			{
-				std::cout << "Numero excedente de parametros. " << 
+				/* verifica se não ha parametros sobrando */
+				if ( argc != i + 1 )
+				{
+					std::cout << "Numero excedente de parametros. " << 
+						"Digite 'mepa -?' para a lista completa de opcoes." << std::endl;
+					return 0;
+				}
+				
+				numDoArqEntrada = i;
+			}
+			else
+			{
+				std::cout << "Tipo de arquivo invalido. " <<
 					"Digite 'mepa -?' para a lista completa de opcoes." << std::endl;
 				return 0;
 			}
-			
-		}
-		else
-		{
-			std::cout << "Tipo de arquivo invalido. " <<
-				"Digite 'mepa -?' para a lista completa de opcoes." << std::endl;
-			return 0;
 		}
 	}
 	
 	//iniciar mepa, etc...
 
-	Mepa
-	magaiver();
+	if( numDoArqSaida == 0 )
+	{
+		magaiver = new Mepa( argv[numDoArqEntrada], tamD, tamP, tamM );
+	}
+	else
+	{
+		magaiver = new Mepa( argv[numDoArqEntrada], argv[numDoArqSaida], tamD, tamP, tamM );
+	}
+	
+	//iniciar mepa;
+	
+	/* desaloca a mepa */
+	delete 
+	magaiver;
 	
 	return 0;
 }

@@ -12,7 +12,7 @@ Mepa::Mepa( const char* vNomeEntrada, int tamD, int tamP, int tamM )
 	/* seta ponteiro para nulo */
 	this->PC = -1;
 	
-	this->pRelatorio = new Printer();
+	this->pRelatorio = new Printer( vNomeEntrada );
 	
 	/* abre arquivo de entrada */
 	this->mArqEntrada.open( vNomeEntrada, std::fstream::in );
@@ -27,7 +27,7 @@ Mepa::Mepa( const char* vNomeEntrada, const char* vNomeSaida, int tamD, int tamP
 	/* seta ponteiro para nulo */
 	this->PC = -1;
 	
-	this->pRelatorio = new Printer(vNomeSaida);
+	this->pRelatorio = new Printer( vNomeSaida, vNomeSaida );
 	
 	/* abre arquivo de entrada */
 	this->mArqEntrada.open( vNomeEntrada, std::fstream::in );

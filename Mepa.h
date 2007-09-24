@@ -18,7 +18,7 @@ class Mepa
 		std::vector<std::string>
 		P;
 		
-		/* Memoria do Programa */
+		/* Memoria do Programa (Pilha de dados) */
 		std::vector<int>
 		M;
 		
