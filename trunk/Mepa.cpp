@@ -38,6 +38,9 @@ Mepa::~Mepa()
 {
 	/* fecha arquivo de entrada */
 	this->mArqEntrada.close();
+	
+	delete
+	this->pRelatorio;
 }
 
 /* ---- Fim dos metodos publicos ---- */
