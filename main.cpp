@@ -11,13 +11,13 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 	int
-	tamD;
+	tamD = 10;
 	
 	int
-	tamP;
+	tamP = 50;
 	
 	int
-	tamM;
+	tamM = 20;
 	
 	int
 	numDoArqEntrada;
