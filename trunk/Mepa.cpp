@@ -10,7 +10,7 @@ Mepa::Mepa( const char* vNomeEntrada, int tamD, int tamP, int tamM )
 	M.resize(tamM,VAZIO);
 	
 	/* seta ponteiro para nulo */
-	this->PC = -1;
+	this->PC = 0;
 	this->s = -1;
 	
 	this->pRelatorio = new Printer( vNomeEntrada );
@@ -26,7 +26,7 @@ Mepa::Mepa( const char* vNomeEntrada, const char* vNomeSaida, int tamD, int tamP
 	M.resize(tamM,VAZIO);
 	
 	/* seta ponteiro para nulo */
-	this->PC = -1;
+	this->PC = 0;
 	this->s = -1;
 	
 	this->pRelatorio = new Printer( vNomeSaida, vNomeSaida );
@@ -43,6 +43,94 @@ Mepa::~Mepa()
 	
 	delete
 	this->pRelatorio;
+}
+
+void Mepa::executa()
+{
+	bool
+	Para = false;
+	
+	while(!para)
+	{
+		switch(P[PC].comando)
+		{
+			case crct:
+				CRCT(P[PC].argumentos[0]);
+				break;
+			case soma:
+				SOMA();
+				break;
+			case subt:
+				SUBT();
+				break;
+			case mult:
+				MULT();
+				break;
+			case divi:
+				DIVI();
+				break;
+			case invr:
+				INVR();
+				break;
+			case conj:
+				CONJ();
+				break;
+			case disj:
+				DISJ();
+				break;
+			case nega:
+				NEGA();
+				break;
+			case cmme:
+				CMME();
+				break;
+			case cmma:
+				CMMA();
+				break;
+			case cmig:
+				CMIG();
+				break;
+			case cmdg:
+				CMDG();
+				break;
+			case cmeg:
+				CMEG();
+				break;
+			case cmag:
+				CMAG();
+				break;
+			case dsvs:
+				DSVS(P[PC].argumentos[0]);
+				break;
+			case dsvf:
+				DSVF(P[PC].argumentos[0]);
+				break;
+			case nada:
+				NADA();
+				break;
+			case leit:
+			case impr:
+			case impl:
+			case impc:
+			case inpp:
+			case amem:
+			case para:
+				PARA();
+				Para = true;
+				break;
+			case crvl:
+			case armz:
+			case chpr:
+			case enpr:
+			case dmen:
+			case rptr:
+			case crvi:
+			case armi:
+			case cren:
+			case mosm:
+				break;
+		}
+	}
 }
 
 /* ---- Fim dos metodos publicos ---- */
@@ -70,13 +158,6 @@ Mepa::CRCT(int vK)
 }
 
 void
-Mepa::CRVL(int n)
-{
-	s++;
-	M[s] = M[n];
-}
-
-void
 Mepa::SOMA()
 {
 	M[s-1] += M[s];
@@ -98,7 +179,7 @@ Mepa::MULT()
 }
 		
 void
-Mepa::DIV()
+Mepa::DIVI()
 {
 	M[s-1] = M[s-1] / M[s];
 	s--;
@@ -228,14 +309,6 @@ Mepa::CMAG()
 	s--;
 }
 
-
-void
-Mepa::ARMZ( int n )
-{
-	M[n] = M[s];
-	s--;
-}
-
 void
 Mepa::DSVS( int p )
 {
@@ -272,12 +345,7 @@ Mepa::LEIT()
 	s++;
 	this->PC++;
 	
-	for(i=0;i < (int) P[PC].size(); i++)
-	{
-		/* transformando a string em um inteiro */
-		v += atoi(&P[PC][i]) * (int) pow(10,(P[PC].size()-i-1));
-	}
-	M[s] = v;
+	M[s] = P[PC].comando;
 }
 
 void
@@ -297,7 +365,7 @@ Mepa::IMPL()
 void
 Mepa::IMPC()
 {
-	std::cout << toascii( M[s] );
+	std::cout << toascii( M[s] ) << std::endl;
 }
 
 void
@@ -349,14 +417,6 @@ Mepa::ENPR( int k )
 	s++;
 	M[s] = D[k];
 	D[k] = s + 1;
-}
-
-void
-Mepa::RTPR( int k )
-{
-	D[k] = M[s];
-	PC = M[s-1];
-	s -= 2;
 }
 
 void
