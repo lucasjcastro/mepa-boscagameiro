@@ -10,12 +10,22 @@
 
 #define VAZIO -1
 
+enum { crct, soma, subt, mult, divi, invr, conj, disj, nega, cmme, cmma, cmig,
+	cmdg, cmeg, cmag, dsvs, dsvf, nada, leit, impr, impl, impc, inpp, amem,
+	para, crvl, armz, chpr, enpr, dmen, rptr, crvi, armi, cren, mosm};
+
+struct p
+{
+	int comando;
+	std::vector<int> argumentos;
+};
+
 class Mepa
 {
 	private:
 	
 		/* Instrucoes do Programa */
-		std::vector<std::string>
+		std::vector<p>
 		P;
 		
 		/* Memoria do Programa (Pilha de dados) */
@@ -63,13 +73,6 @@ class Mepa
 		CRCT(int k);
 		
 		/**
-		 * Carrega Valor n no topo da pilha
-		 * @param n valor a ser carregado na pilha
-		 */
-		void
-		CRVL(int n);
-		
-		/**
 		 * Somar
 		 */
 		void
@@ -91,7 +94,7 @@ class Mepa
 		 * Divisao Inteira
 		 */
 		void
-		DIV();
+		DIVI();
 		
 		/**
 		 * Inverter Sinal
@@ -152,13 +155,6 @@ class Mepa
 		 */
 		void
 		CMAG();
-	
-		/**
-		 * Armazena valor na pilha
-		 * @param n valor armazenado
-		 */
-		void
-		ARMZ( int n );
 		
 		/**
 		 * Desvio incondicional
@@ -255,13 +251,6 @@ class Mepa
 		ENPR( int k );
 		
 		/**
-		 * Retorna procedimento
-		 * @param k Nivel lexico do procedimento
-		 */
-		void
-		RTPR( int k );
-		
-		/**
 		 * Desaloca memoria
 		 * @param n Quantidade de memoria a ser desalocada
 		 */
@@ -324,6 +313,9 @@ class Mepa
 		
 		virtual
 		~Mepa();
+
+		void
+		executa();
 
 };
 
