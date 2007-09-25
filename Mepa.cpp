@@ -339,9 +339,6 @@ Mepa::NADA()
 void
 Mepa::LEIT()
 {
-	int i;
-	int v;
-	
 	s++;
 	this->PC++;
 	
@@ -463,6 +460,12 @@ Mepa::MOSM()
 	pRelatorio->printD( &D );
 	pRelatorio->printM( &M, s );
 	pRelatorio->printRodape();
+}
+
+void
+Mepa::carregaP()
+{
+	
 }
 
 /* ---- Fim dos metodos privados ---- */

@@ -290,6 +290,13 @@ class Mepa
 		void
 		MOSM();
 		
+		/**
+		 * Carrega as intrucoes do arquivo em P
+		 */
+		void
+		carregaP();
+		
+		
 	public:
 	
 		/** 
