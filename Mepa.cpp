@@ -465,7 +465,47 @@ Mepa::MOSM()
 void
 Mepa::carregaP()
 {
+	unsigned int
+	linha = 0;
 	
+	char
+	instrucao[4];
+	
+	char
+	proximo;
+	
+	int
+	arg;
+	
+	p
+	tempStruct;
+	
+	/* ainda não adicionei a instrucao pq nao sei 
+	 * como fazer, revisar */
+	/* e ainda não tratei se tiver label, pq nao sei 
+	 * como fazer nem se vai precisar */
+	while ( !mArqEntrada.eof() && linha <= P.size() )
+	{
+		mArqEntrada >> linha >> instrucao;
+		mArqEntrada.ignore( 1, ' ');
+		proximo = mArqEntrada.peek();
+		if ( proximo >= '0' && proximo <= '9' )
+		{
+			mArqEntrada >> arg;
+			tempStruct.argumentos.push_back( arg );
+			proximo = mArqEntrada.peek();
+			if ( proximo == ',' )
+			{
+				mArqEntrada.ignore( 1, ',' );
+				mArqEntrada >> arg;
+				tempStruct.argumentos.push_back( arg );
+			}
+		}
+		P[ linha ] = tempStruct;
+		
+		mArqEntrada.ignore( 30, '\n' );
+		linha++;
+	}
 }
 
 /* ---- Fim dos metodos privados ---- */
