@@ -1,5 +1,6 @@
 #include "Mepa.h"
 #include <math.h>
+#include <vector>
 
 /* ---- Inicio dos metodos publicos ---- */
 
@@ -468,8 +469,8 @@ Mepa::carregaP()
 	unsigned int
 	linha = 0;
 	
-	char
-	instrucao[4];
+	std::string
+	instrucao;
 	
 	char
 	proximo;
@@ -479,30 +480,400 @@ Mepa::carregaP()
 	
 	p
 	tempStruct;
+		
+	std::vector<label>
+	rotulos;
 	
-	/* ainda não adicionei a instrucao pq nao sei 
-	 * como fazer, revisar */
-	/* e ainda não tratei se tiver label, pq nao sei 
-	 * como fazer nem se vai precisar */
+	label
+	tempRotulo;
+	
 	while ( !mArqEntrada.eof() && linha <= P.size() )
 	{
-		mArqEntrada >> linha >> instrucao;
-		mArqEntrada.ignore( 1, ' ');
+
 		proximo = mArqEntrada.peek();
+		/* caso for label resolvido */
 		if ( proximo >= '0' && proximo <= '9' )
 		{
-			mArqEntrada >> arg;
-			tempStruct.argumentos.push_back( arg );
-			proximo = mArqEntrada.peek();
-			if ( proximo == ',' )
+			/* o primeiro valor e o rotulo e o segunda a instrucao */
+			mArqEntrada >> tempRotulo.rotulo >> instrucao;
+			tempRotulo.endereco = linha;
+			
+
+			/* rotulo armazenado */
+			rotulos.push_back( tempRotulo );
+			
+//-----------------------------------------------------------------------			
+			if ( instrucao == "AMEM" )
 			{
-				mArqEntrada.ignore( 1, ',' );
-				mArqEntrada >> arg;
-				tempStruct.argumentos.push_back( arg );
+				tempStruct.comando = amem;
+			}
+			else if ( instrucao == "ARMI" )
+			{
+				tempStruct.comando = armi;
+			}
+			else if ( instrucao == "ARMZ" )
+			{
+				tempStruct.comando = armz;
+			}
+			else if ( instrucao == "CHPR" )
+			{
+				tempStruct.comando = chpr;
+			}
+			else if ( instrucao == "CMAG" )
+			{
+				tempStruct.comando = cmag;
+			}
+			else if ( instrucao == "CMDG" )
+			{
+				tempStruct.comando = cmdg;
+			}
+			else if ( instrucao == "CMEG" )
+			{
+				tempStruct.comando = cmeg;
+			}
+			else if ( instrucao == "CMIG" )
+			{
+				tempStruct.comando = cmig;
+			}
+			else if ( instrucao == "CMMA" )
+			{
+				tempStruct.comando = cmma;
+			}
+			else if ( instrucao == "CMME" )
+			{
+				tempStruct.comando = cmme;
+			}
+			else if ( instrucao == "CONJ" )
+			{
+				tempStruct.comando = conj;
+			}
+			else if ( instrucao == "CRCT" )
+			{
+				tempStruct.comando = crct;
+			}
+			else if ( instrucao == "CREN" )
+			{
+				tempStruct.comando = cren;
+			}
+			else if ( instrucao == "CRVI" )
+			{
+				tempStruct.comando = crvi;
+			}
+			else if ( instrucao == "CRVL" )
+			{
+				tempStruct.comando = crvl;
+			}
+			else if ( instrucao == "DISJ" )
+			{
+				tempStruct.comando = disj;
+			}
+			else if ( instrucao == "DIVI" )
+			{
+				tempStruct.comando = divi;
+			}
+			else if ( instrucao == "DMEN" )
+			{
+				tempStruct.comando = dmen;
+			}
+			else if ( instrucao == "DSVF" )
+			{
+				tempStruct.comando = dsvf;
+			}
+			else if ( instrucao == "DSVS" )
+			{
+				tempStruct.comando = dsvs;
+			}
+			else if ( instrucao == "ENPR" )
+			{
+				tempStruct.comando = enpr;
+			}
+			else if ( instrucao == "IMPC" )
+			{
+				tempStruct.comando = impc;
+			}
+			else if ( instrucao == "IMPL" )
+			{
+				tempStruct.comando = impl;
+			}
+			else if ( instrucao == "IMPR" )
+			{
+				tempStruct.comando = impr;
+			}
+			else if ( instrucao == "INPP" )
+			{
+				tempStruct.comando = inpp;
+			}
+			else if ( instrucao == "INVR" )
+			{
+				tempStruct.comando = invr;
+			}
+			else if ( instrucao == "LEIT" )
+			{
+				tempStruct.comando = leit;
+			}
+			else if ( instrucao == "MOSM" )
+			{
+				tempStruct.comando = mosm;
+			}
+			else if ( instrucao == "MULT" )
+			{
+				tempStruct.comando = mult;
+			}
+			else if ( instrucao == "NADA" )
+			{
+				tempStruct.comando = nada;
+			}
+			else if ( instrucao == "NEGA" )
+			{
+				tempStruct.comando = nega;
+			}
+			else if ( instrucao == "PARA" )
+			{
+				tempStruct.comando = para;
+			}			
+//-----------------------------------------------------------------------			
+			/* verifica se e intrucao de desvio e substitui o rotulo */
+			if ( instrucao == "DSVF" || instrucao == "DSVS" )
+			{
+				std::string
+				rotulo;
+				
+				/* le o rotulo */
+				mArqEntrada >> rotulo;
+				
+				/* procura por ele no vetor de rotulos */
+				for ( int i = 0; i < (int) rotulos.size(); i++ )
+				{
+					tempRotulo = rotulos[i];
+					/* compara rotulo lido com o do vetor */
+					if ( tempRotulo.rotulo == rotulo )
+					{
+						tempStruct.argumentos.push_back( tempRotulo.endereco );
+						break;
+					}
+				}
+				
+			}
+			/* se nao for instrucao de desvio */
+			else
+			{
+				mArqEntrada.ignore( 1, ' ');
+				proximo = mArqEntrada.peek();
+				
+				/* se tem argumento */
+				if ( proximo >= '0' && proximo <= '9' )
+				{
+					mArqEntrada >> arg;
+					tempStruct.argumentos.push_back( arg );
+					proximo = mArqEntrada.peek();
+					
+					/* se tem outro argumento */
+					if ( proximo == ',' )
+					{
+						mArqEntrada.ignore( 1, ',' );
+						mArqEntrada >> arg;
+						tempStruct.argumentos.push_back( arg );
+					}
+				}
 			}
 		}
+		/* rotulos nao resolvidos */
+		else
+		{
+			char
+			chinelo[6];
+			
+			/* le a primeira parte e verica se tem label */
+			mArqEntrada.read( chinelo, 6 );
+			chinelo[6] = '\0';
+			if ( strcmp( chinelo, "      \0" ) )
+			{
+				tempRotulo.rotulo = chinelo;
+				tempRotulo.endereco = linha;
+				rotulos.push_back( tempRotulo );
+			}
+			
+			/* le a instrucao */
+			mArqEntrada >> instrucao;
+//-----------------------------------------------------------------------			
+			if ( instrucao == "AMEM" )
+			{
+				tempStruct.comando = amem;
+			}
+			else if ( instrucao == "ARMI" )
+			{
+				tempStruct.comando = armi;
+			}
+			else if ( instrucao == "ARMZ" )
+			{
+				tempStruct.comando = armz;
+			}
+			else if ( instrucao == "CHPR" )
+			{
+				tempStruct.comando = chpr;
+			}
+			else if ( instrucao == "CMAG" )
+			{
+				tempStruct.comando = cmag;
+			}
+			else if ( instrucao == "CMDG" )
+			{
+				tempStruct.comando = cmdg;
+			}
+			else if ( instrucao == "CMEG" )
+			{
+				tempStruct.comando = cmeg;
+			}
+			else if ( instrucao == "CMIG" )
+			{
+				tempStruct.comando = cmig;
+			}
+			else if ( instrucao == "CMMA" )
+			{
+				tempStruct.comando = cmma;
+			}
+			else if ( instrucao == "CMME" )
+			{
+				tempStruct.comando = cmme;
+			}
+			else if ( instrucao == "CONJ" )
+			{
+				tempStruct.comando = conj;
+			}
+			else if ( instrucao == "CRCT" )
+			{
+				tempStruct.comando = crct;
+			}
+			else if ( instrucao == "CREN" )
+			{
+				tempStruct.comando = cren;
+			}
+			else if ( instrucao == "CRVI" )
+			{
+				tempStruct.comando = crvi;
+			}
+			else if ( instrucao == "CRVL" )
+			{
+				tempStruct.comando = crvl;
+			}
+			else if ( instrucao == "DISJ" )
+			{
+				tempStruct.comando = disj;
+			}
+			else if ( instrucao == "DIVI" )
+			{
+				tempStruct.comando = divi;
+			}
+			else if ( instrucao == "DMEN" )
+			{
+				tempStruct.comando = dmen;
+			}
+			else if ( instrucao == "DSVF" )
+			{
+				tempStruct.comando = dsvf;
+			}
+			else if ( instrucao == "DSVS" )
+			{
+				tempStruct.comando = dsvs;
+			}
+			else if ( instrucao == "ENPR" )
+			{
+				tempStruct.comando = enpr;
+			}
+			else if ( instrucao == "IMPC" )
+			{
+				tempStruct.comando = impc;
+			}
+			else if ( instrucao == "IMPL" )
+			{
+				tempStruct.comando = impl;
+			}
+			else if ( instrucao == "IMPR" )
+			{
+				tempStruct.comando = impr;
+			}
+			else if ( instrucao == "INPP" )
+			{
+				tempStruct.comando = inpp;
+			}
+			else if ( instrucao == "INVR" )
+			{
+				tempStruct.comando = invr;
+			}
+			else if ( instrucao == "LEIT" )
+			{
+				tempStruct.comando = leit;
+			}
+			else if ( instrucao == "MOSM" )
+			{
+				tempStruct.comando = mosm;
+			}
+			else if ( instrucao == "MULT" )
+			{
+				tempStruct.comando = mult;
+			}
+			else if ( instrucao == "NADA" )
+			{
+				tempStruct.comando = nada;
+			}
+			else if ( instrucao == "NEGA" )
+			{
+				tempStruct.comando = nega;
+			}
+			else if ( instrucao == "PARA" )
+			{
+				tempStruct.comando = para;
+			}			
+//-----------------------------------------------------------------------	
+			
+			/* verifica se e intrucao de desvio e substitui o rotulo */
+			if ( instrucao == "DSVF" || instrucao == "DSVS" )
+			{
+				mArqEntrada.ignore( 1, ' ' );
+				
+				/* le o rotulo com chinelo pois e o mesmo
+				 * formato que esta armazenado no vetor de rotulos */
+				mArqEntrada.read( chinelo, 6 );
+				chinelo[6] = '\0';
+				
+				/* procura pelo rotulo no vetor de rotulos */
+				for ( int i = 0; i < (int) rotulos.size(); i++ )
+				{
+					tempRotulo = rotulos[i];
+					/* compara os rotulos (obs: comparacao de string com char*) */
+					if ( tempRotulo.rotulo == chinelo )
+					{
+						/* armazena endereco do rotulo no vetor de argumentos da struct */
+						tempStruct.argumentos.push_back( tempRotulo.endereco );
+						break;
+					}
+				}
+			}
+			/* se nao for instrucao de desvio */
+			else
+			{
+				mArqEntrada.ignore( 1, ' ');
+				proximo = mArqEntrada.peek();
+				/* verifica se tem argumento */
+				if ( proximo >= '0' && proximo <= '9' )
+				{
+					mArqEntrada >> arg;
+					tempStruct.argumentos.push_back( arg );
+					proximo = mArqEntrada.peek();
+					/* verifica se tem outro argumento */
+					if ( proximo == ',' )
+					{
+						mArqEntrada.ignore( 1, ',' );
+						mArqEntrada >> arg;
+						tempStruct.argumentos.push_back( arg );
+					}
+				}
+			}
+		}
+		/* armazena struct temporaria em P */
 		P[ linha ] = tempStruct;
 		
+		/* anda ate o final da linha */
 		mArqEntrada.ignore( 30, '\n' );
 		linha++;
 	}

@@ -20,6 +20,15 @@ struct p
 	std::vector<int> argumentos;
 };
 
+struct label
+{
+	unsigned int
+	endereco;
+	
+	std::string
+	rotulo;
+};
+
 class Mepa
 {
 	private:
