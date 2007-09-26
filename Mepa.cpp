@@ -112,24 +112,54 @@ void Mepa::executa()
 				NADA();
 				break;
 			case leit:
+				LEIT();
+				break;
 			case impr:
+				IMPR();
+				break;
 			case impl:
+				IMPL();
+				break;
 			case impc:
+				IMPC();
+				break;
 			case inpp:
+				INPP();
+				break;
 			case amem:
+				AMEM(P[PC].argumentos[0]);
+				break;
 			case para:
 				PARA();
 				Para = true;
 				break;
 			case crvl:
+				CRVL(P[PC].argumentos[0],P[PC].argumentos[1]);
+				break;
 			case armz:
+				ARMZ(P[PC].argumentos[0],P[PC].argumentos[1]);
+				break;
 			case chpr:
+				CHPR(P[PC].argumentos[0]);
+				break;
 			case enpr:
+				ENPR(P[PC].argumentos[0]);
+				break;
 			case dmem:
+				DMEM(P[PC].argumentos[0]);
+				break;
 			case rptr:
+				RTPR(P[PC].argumentos[0],P[PC].argumentos[1]);
+				break;
 			case crvi:
+				CRVI(P[PC].argumentos[0],P[PC].argumentos[1]);
+				break;
 			case armi:
+				ARMI(P[PC].argumentos[0],P[PC].argumentos[1]);
+				break;
 			case cren:
+				CREN(P[PC].argumentos[0],P[PC].argumentos[1]);
+				break;
 			case mosm:
 				MOSM();
 				break;
@@ -159,6 +189,7 @@ Mepa::CRCT(int vK)
 {
 	s++;
 	M[s] = vK;
+	proximaInstrucao();
 }
 
 void
@@ -166,6 +197,7 @@ Mepa::SOMA()
 {
 	M[s-1] += M[s];
 	s--;
+	proximaInstrucao();
 }
 		
 void
@@ -173,6 +205,7 @@ Mepa::SUBT()
 {
 	M[s-1] = M[s-1] - M[s];
 	s--;
+	proximaInstrucao();
 }
 		
 void
@@ -180,6 +213,7 @@ Mepa::MULT()
 {
 	M[s-1] *= M[s];
 	s--;
+	proximaInstrucao();
 }
 		
 void
@@ -187,12 +221,14 @@ Mepa::DIVI()
 {
 	M[s-1] = M[s-1] / M[s];
 	s--;
+	proximaInstrucao();
 }
 		
 void
 Mepa::INVR()
 {
 	M[s] = - M[s];
+	proximaInstrucao();
 }
 		
 void
@@ -207,6 +243,7 @@ Mepa::CONJ()
 		M[s-1] = 0;
 	}
 	s--;
+	proximaInstrucao();
 }
 		
 void
@@ -221,12 +258,14 @@ Mepa::DISJ()
 		M[s-1] = 0;
 	}
 	s--;
+	proximaInstrucao();
 }
 		
 void
 Mepa::NEGA()
 {
 	M[s] = 1 - M[s];
+	proximaInstrucao();
 }
 		
 void
@@ -241,6 +280,7 @@ Mepa::CMME()
 		M[s-1] = 0;
 	}
 	s--;
+	proximaInstrucao();
 }
 		
 void
@@ -255,6 +295,7 @@ Mepa::CMMA()
 		M[s-1] = 0;
 	}
 	s--;
+	proximaInstrucao();
 }
 		
 void
@@ -269,6 +310,7 @@ Mepa::CMIG()
 		M[s-1] = 0;
 	}
 	s--;
+	proximaInstrucao();
 }
 		
 void
@@ -283,6 +325,7 @@ Mepa::CMDG()
 		M[s-1] = 0;
 	}
 	s--;
+	proximaInstrucao();
 }
 		
 void
@@ -297,6 +340,7 @@ Mepa::CMEG()
 		M[s-1] = 0;
 	}
 	s--;
+	proximaInstrucao();
 }
 		
 void
@@ -311,12 +355,13 @@ Mepa::CMAG()
 		M[s-1] = 0;
 	}
 	s--;
+	proximaInstrucao();
 }
 
 void
 Mepa::DSVS( int p )
 {
-	PC = p;
+	proximaInstrucao( p );
 }
 
 void
@@ -324,11 +369,11 @@ Mepa::DSVF( int p )
 {
 	if(M[s] == 0)
 	{
-		this->PC = p;
+		proximaInstrucao( p );
 	}
 	else
 	{
-		this->PC++; 
+		proximaInstrucao();
 	}
 	s--;
 }
@@ -336,17 +381,17 @@ Mepa::DSVF( int p )
 void
 Mepa::NADA()
 {
-	/* nao faz nada mesmo, apesar de eu achar 
-	 * q precisa incrementar o PC, enfim...*/
+	proximaInstrucao();
 }
 
 void
 Mepa::LEIT()
 {
 	s++;
-	this->PC++;
+	proximaInstrucao();
 	
 	M[s] = P[PC].comando;
+	proximaInstrucao();
 }
 
 void
@@ -354,6 +399,7 @@ Mepa::IMPR()
 {
 	std::cout << M[s];
 	s--;
+	proximaInstrucao();
 }
 
 void
@@ -361,12 +407,14 @@ Mepa::IMPL()
 {
 	std::cout << M[s] << std::endl;
 	s--;
+	proximaInstrucao();
 }
 
 void
 Mepa::IMPC()
 {
 	std::cout << toascii( M[s] ) << std::endl;
+	proximaInstrucao();
 }
 
 void
@@ -374,12 +422,14 @@ Mepa::INPP()
 {
 	this->s = -1;
 	D[0] = 0;
+	proximaInstrucao();
 }
 
 void
 Mepa::AMEM( int m )
 {
 	s += m;
+	proximaInstrucao();
 }
 
 void
@@ -393,6 +443,7 @@ Mepa::CRVL( int k, int n )
 {
 	s++;
 	M[s] = M[D[k] + n];
+	proximaInstrucao();
 }
 
 void
@@ -400,6 +451,7 @@ Mepa::ARMZ( int k, int n )
 {
 	M[D[k]+n] = M[s];
 	s--;
+	proximaInstrucao();
 }
 
 void
@@ -408,8 +460,6 @@ Mepa::CHPR( int L )
 	s++;
 	M[s] = PC + 1;
 	PC = L;
-	/* lembrar de arrumar essa merda pq agente
-	 * tá recebendo o endereco nao o procedimento em si */
 }
 
 void
@@ -418,12 +468,14 @@ Mepa::ENPR( int k )
 	s++;
 	M[s] = D[k];
 	D[k] = s + 1;
+	proximaInstrucao();
 }
 
 void
 Mepa::DMEM( int n )
 {
 	s -= n;
+	proximaInstrucao();
 }
 
 void
@@ -439,6 +491,7 @@ Mepa::CRVI( int k, int n )
 {
 	s++;
 	M[s] = M[ M[D[k] + n] ];
+	proximaInstrucao();
 }
 		
 void
@@ -446,6 +499,7 @@ Mepa::ARMI( int k, int n )
 {
 	M[ M[D[k]+n] ] = M[s];
 	s--;
+	proximaInstrucao();
 }
 		
 void
@@ -453,6 +507,7 @@ Mepa::CREN( int k, int n )
 {
 	s++;
 	M[s] = D[k] + n;
+	proximaInstrucao();
 }
 
 void
@@ -464,6 +519,7 @@ Mepa::MOSM()
 	pRelatorio->printD( &D );
 	pRelatorio->printM( &M, s );
 	pRelatorio->printRodape();
+	proximaInstrucao();
 }
 
 void
