@@ -12,7 +12,7 @@
 
 enum { crct, soma, subt, mult, divi, invr, conj, disj, nega, cmme, cmma, cmig,
 	cmdg, cmeg, cmag, dsvs, dsvf, nada, leit, impr, impl, impc, inpp, amem,
-	para, crvl, armz, chpr, enpr, dmen, rptr, crvi, armi, cren, mosm};
+	para, crvl, armz, chpr, enpr, dmem, rptr, crvi, armi, cren, mosm, rtpr};
 
 struct p
 {
@@ -25,8 +25,8 @@ struct label
 	unsigned int
 	endereco;
 	
-	std::string
-	rotulo;
+	char
+	rotulo[6];
 };
 
 class Mepa
@@ -264,7 +264,7 @@ class Mepa
 		 * @param n Quantidade de memoria a ser desalocada
 		 */
 		void
-		DMEN( int n );
+		DMEM( int n );
 		
 		/**
 		 * Retorna procedimento
