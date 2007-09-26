@@ -173,7 +173,7 @@ int main(int argc, char *argv[])
 	}
 	
 	//iniciar mepa;
-	
+	magaiver->executa();
 	/* desaloca a mepa */
 	delete 
 	magaiver;
