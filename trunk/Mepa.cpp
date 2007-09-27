@@ -727,22 +727,32 @@ Mepa::carregaP()
 			{
 				mArqEntrada.ignore( 1, ' ' );
 				
-				/* le o rotulo com chinelo pois e o mesmo
-				 * formato que esta armazenado no vetor de rotulos */
-				mArqEntrada.read( chinelo, 5 );
-				chinelo[5] = '\0';
-				
-				/* procura pelo rotulo no vetor de rotulos */
-				for ( int i = 0; i < (int) rotulos.size(); i++ )
+				proximo = mArqEntrada.peek();
+				if ( proximo >= '0' && proximo <= '9' )
 				{
-					tempRotulo = rotulos[i];
-
-					/* compara os rotulos (obs: comparacao de string com char*) */
-					if ( strcmp( tempRotulo.rotulo, chinelo ) == 0 )
+					int seila;
+					mArqEntrada >> seila;
+					tempStruct.argumentos.push_back(seila);
+				}
+				else
+				{
+					/* le o rotulo com chinelo pois e o mesmo
+					 * formato que esta armazenado no vetor de rotulos */
+					mArqEntrada.read( chinelo, 5 );
+					chinelo[5] = '\0';
+					
+					/* procura pelo rotulo no vetor de rotulos */
+					for ( int i = 0; i < (int) rotulos.size(); i++ )
 					{
-						/* armazena endereco do rotulo no vetor de argumentos da struct */
-						tempStruct.argumentos.push_back( (int) tempRotulo.endereco );
-						break;
+						tempRotulo = rotulos[i];
+	
+						/* compara os rotulos (obs: comparacao de string com char*) */
+						if ( strcmp( tempRotulo.rotulo, chinelo ) == 0 )
+						{
+							/* armazena endereco do rotulo no vetor de argumentos da struct */
+							tempStruct.argumentos.push_back( (int) tempRotulo.endereco );
+							break;
+						}
 					}
 				}
 			}
