@@ -563,156 +563,170 @@ Mepa::carregaP()
 				rotulos.push_back( tempRotulo );
 			}
 			
-			/* le a instrucao */
-			mArqEntrada >> instrucao;
+			mArqEntrada.ignore( 1 , ' ' ); 
+			proximo = mArqEntrada.peek();
+			if ( proximo >= '0' && proximo <= '9' )
+			{/*testes*/		std::cout << "----" << '\t';
+				int 
+				value;
+				
+				mArqEntrada >> value;
+				tempStruct.argumentos.push_back( value );
+				tempStruct.comando = vazio;
+			}
+			else
+			{
+				/* le a instrucao */
+				mArqEntrada >> instrucao;
 //-----------------------------------------------------------------------			
-			if ( instrucao == "AMEM" )
-			{
-				/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = amem;
-			}
-			else if ( instrucao == "ARMI" )
-			{
-				/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = armi;
-			}
-			else if ( instrucao == "ARMZ" )
-			{
-				/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = armz;
-			}
-			else if ( instrucao == "CHPR" )
-			{
-				/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = chpr;
-			}
-			else if ( instrucao == "CMAG" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = cmag;
-			}
-			else if ( instrucao == "CMDG" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = cmdg;
-			}
-			else if ( instrucao == "CMEG" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = cmeg;
-			}
-			else if ( instrucao == "CMIG" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = cmig;
-			}
-			else if ( instrucao == "CMMA" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = cmma;
-			}
-			else if ( instrucao == "CMME" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = cmme;
-			}
-			else if ( instrucao == "CONJ" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = conj;
-			}
-			else if ( instrucao == "CRCT" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = crct;
-			}
-			else if ( instrucao == "CREN" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = cren;
-			}
-			else if ( instrucao == "CRVI" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = crvi;
-			}
-			else if ( instrucao == "CRVL" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = crvl;
-			}
-			else if ( instrucao == "DISJ" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = disj;
-			}
-			else if ( instrucao == "DIVI" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = divi;
-			}
-			else if ( instrucao == "DMEM" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = dmem;
-			}
-			else if ( instrucao == "DSVF" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = dsvf;
-			}
-			else if ( instrucao == "DSVS" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = dsvs;
-			}
-			else if ( instrucao == "ENPR" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = enpr;
-			}
-			else if ( instrucao == "IMPC" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = impc;
-			}
-			else if ( instrucao == "IMPL" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = impl;
-			}
-			else if ( instrucao == "IMPR" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = impr;
-			}
-			else if ( instrucao == "INPP" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = inpp;
-			}
-			else if ( instrucao == "INVR" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = invr;
-			}
-			else if ( instrucao == "LEIT" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = leit;
-			}
-			else if ( instrucao == "MOSM" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = mosm;
-			}
-			else if ( instrucao == "MULT" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = mult;
-			}
-			else if ( instrucao == "NADA" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = nada;
-			}
-			else if ( instrucao == "NEGA" )
-			{
-				/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = nega;
-			}
-			else if ( instrucao == "PARA" )
-			{
-/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = para;
-			}
-			else if ( instrucao == "RTPR" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = rtpr;
-			}
-			else if ( instrucao == "SOMA" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = soma;
-			}
-			else if ( instrucao == "SUBT" )
-			{/*testes*/		std::cout << instrucao << '\t';
-				tempStruct.comando = subt;
-			}
+				if ( instrucao == "AMEM" )
+				{
+					/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = amem;
+				}
+				else if ( instrucao == "ARMI" )
+				{
+					/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = armi;
+				}
+				else if ( instrucao == "ARMZ" )
+				{
+					/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = armz;
+				}
+				else if ( instrucao == "CHPR" )
+				{
+					/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = chpr;
+				}
+				else if ( instrucao == "CMAG" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = cmag;
+				}
+				else if ( instrucao == "CMDG" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = cmdg;
+				}
+				else if ( instrucao == "CMEG" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = cmeg;
+				}
+				else if ( instrucao == "CMIG" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = cmig;
+				}
+				else if ( instrucao == "CMMA" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = cmma;
+				}
+				else if ( instrucao == "CMME" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = cmme;
+				}
+				else if ( instrucao == "CONJ" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = conj;
+				}
+				else if ( instrucao == "CRCT" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = crct;
+				}
+				else if ( instrucao == "CREN" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = cren;
+				}
+				else if ( instrucao == "CRVI" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = crvi;
+				}
+				else if ( instrucao == "CRVL" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = crvl;
+				}
+				else if ( instrucao == "DISJ" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = disj;
+				}
+				else if ( instrucao == "DIVI" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = divi;
+				}
+				else if ( instrucao == "DMEM" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = dmem;
+				}
+				else if ( instrucao == "DSVF" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = dsvf;
+				}
+				else if ( instrucao == "DSVS" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = dsvs;
+				}
+				else if ( instrucao == "ENPR" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = enpr;
+				}
+				else if ( instrucao == "IMPC" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = impc;
+				}
+				else if ( instrucao == "IMPL" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = impl;
+				}
+				else if ( instrucao == "IMPR" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = impr;
+				}
+				else if ( instrucao == "INPP" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = inpp;
+				}
+				else if ( instrucao == "INVR" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = invr;
+				}
+				else if ( instrucao == "LEIT" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = leit;
+				}
+				else if ( instrucao == "MOSM" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = mosm;
+				}
+				else if ( instrucao == "MULT" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = mult;
+				}
+				else if ( instrucao == "NADA" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = nada;
+				}
+				else if ( instrucao == "NEGA" )
+				{
+					/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = nega;
+				}
+				else if ( instrucao == "PARA" )
+				{
+	/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = para;
+				}
+				else if ( instrucao == "RTPR" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = rtpr;
+				}
+				else if ( instrucao == "SOMA" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = soma;
+				}
+				else if ( instrucao == "SUBT" )
+				{/*testes*/		std::cout << instrucao << '\t';
+					tempStruct.comando = subt;
+				}
 //-----------------------------------------------------------------------	
+			}
 			
 			/* verifica se e intrucao de desvio e substitui o rotulo */
 			if ( instrucao == "DSVF" || instrucao == "DSVS" )
@@ -728,9 +742,7 @@ Mepa::carregaP()
 				for ( int i = 0; i < (int) rotulos.size(); i++ )
 				{
 					tempRotulo = rotulos[i];
-					
-//					std::cout << "-" << tempRotulo.rotulo << " " << chinelo << "-";
-					
+
 					/* compara os rotulos (obs: comparacao de string com char*) */
 					if ( strcmp( tempRotulo.rotulo, chinelo ) == 0 )
 					{
