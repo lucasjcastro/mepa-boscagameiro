@@ -30,7 +30,7 @@ Mepa::Mepa( const char* vNomeEntrada, const char* vNomeSaida, int tamD, int tamP
 	this->PC = 0;
 	this->s = -1;
 	
-	this->pRelatorio = new Printer( vNomeSaida, vNomeSaida );
+	this->pRelatorio = new Printer( vNomeEntrada, vNomeSaida );
 	
 	/* abre arquivo de entrada */
 	this->mArqEntrada.open( vNomeEntrada, std::fstream::in );
