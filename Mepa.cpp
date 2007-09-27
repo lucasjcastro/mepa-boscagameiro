@@ -53,7 +53,7 @@ void Mepa::executa()
 	
 	carregaP();
 	
-	while(!para)
+	while(!Para)
 	{
 		switch(P[PC].comando)
 		{
