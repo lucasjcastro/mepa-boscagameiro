@@ -548,204 +548,14 @@ Mepa::carregaP()
 	
 	while ( !mArqEntrada.eof() && linha <= P.size() )
 	{
-
-//		proximo = mArqEntrada.peek();
-//		/* caso for label resolvido */
-//		if ( proximo >= '0' && proximo <= '9' )
-//		{
-//			/* o primeiro valor e o rotulo e o segunda a instrucao */
-//			mArqEntrada >> tempRotulo.rotulo >> instrucao;
-//			tempRotulo.endereco = linha;
-//			
-//
-//			/* rotulo armazenado */
-//			rotulos.push_back( tempRotulo );
-//			
-////-----------------------------------------------------------------------			
-//			if ( instrucao == "AMEM" )
-//			{
-//				tempStruct.comando = amem;
-//			}
-//			else if ( instrucao == "ARMI" )
-//			{
-//				tempStruct.comando = armi;
-//			}
-//			else if ( instrucao == "ARMZ" )
-//			{
-//				tempStruct.comando = armz;
-//			}
-//			else if ( instrucao == "CHPR" )
-//			{
-//				tempStruct.comando = chpr;
-//			}
-//			else if ( instrucao == "CMAG" )
-//			{
-//				tempStruct.comando = cmag;
-//			}
-//			else if ( instrucao == "CMDG" )
-//			{
-//				tempStruct.comando = cmdg;
-//			}
-//			else if ( instrucao == "CMEG" )
-//			{
-//				tempStruct.comando = cmeg;
-//			}
-//			else if ( instrucao == "CMIG" )
-//			{
-//				tempStruct.comando = cmig;
-//			}
-//			else if ( instrucao == "CMMA" )
-//			{
-//				tempStruct.comando = cmma;
-//			}
-//			else if ( instrucao == "CMME" )
-//			{
-//				tempStruct.comando = cmme;
-//			}
-//			else if ( instrucao == "CONJ" )
-//			{
-//				tempStruct.comando = conj;
-//			}
-//			else if ( instrucao == "CRCT" )
-//			{
-//				tempStruct.comando = crct;
-//			}
-//			else if ( instrucao == "CREN" )
-//			{
-//				tempStruct.comando = cren;
-//			}
-//			else if ( instrucao == "CRVI" )
-//			{
-//				tempStruct.comando = crvi;
-//			}
-//			else if ( instrucao == "CRVL" )
-//			{
-//				tempStruct.comando = crvl;
-//			}
-//			else if ( instrucao == "DISJ" )
-//			{
-//				tempStruct.comando = disj;
-//			}
-//			else if ( instrucao == "DIVI" )
-//			{
-//				tempStruct.comando = divi;
-//			}
-//			else if ( instrucao == "DMEM" )
-//			{
-//				tempStruct.comando = dmem;
-//			}
-//			else if ( instrucao == "DSVF" )
-//			{
-//				tempStruct.comando = dsvf;
-//			}
-//			else if ( instrucao == "DSVS" )
-//			{
-//				tempStruct.comando = dsvs;
-//			}
-//			else if ( instrucao == "ENPR" )
-//			{
-//				tempStruct.comando = enpr;
-//			}
-//			else if ( instrucao == "IMPC" )
-//			{
-//				tempStruct.comando = impc;
-//			}
-//			else if ( instrucao == "IMPL" )
-//			{
-//				tempStruct.comando = impl;
-//			}
-//			else if ( instrucao == "IMPR" )
-//			{
-//				tempStruct.comando = impr;
-//			}
-//			else if ( instrucao == "INPP" )
-//			{
-//				tempStruct.comando = inpp;
-//			}
-//			else if ( instrucao == "INVR" )
-//			{
-//				tempStruct.comando = invr;
-//			}
-//			else if ( instrucao == "LEIT" )
-//			{
-//				tempStruct.comando = leit;
-//			}
-//			else if ( instrucao == "MOSM" )
-//			{
-//				tempStruct.comando = mosm;
-//			}
-//			else if ( instrucao == "MULT" )
-//			{
-//				tempStruct.comando = mult;
-//			}
-//			else if ( instrucao == "NADA" )
-//			{
-//				tempStruct.comando = nada;
-//			}
-//			else if ( instrucao == "NEGA" )
-//			{
-//				tempStruct.comando = nega;
-//			}
-//			else if ( instrucao == "PARA" )
-//			{
-//				tempStruct.comando = para;
-//			}			
-////-----------------------------------------------------------------------			
-//			/* verifica se e intrucao de desvio e substitui o rotulo */
-//			if ( instrucao == "DSVF" || instrucao == "DSVS" )
-//			{
-//				std::string
-//				rotulo;
-//				
-//				/* le o rotulo */
-//				mArqEntrada >> rotulo;
-//				
-//				/* procura por ele no vetor de rotulos */
-//				for ( int i = 0; i < (int) rotulos.size(); i++ )
-//				{
-//					tempRotulo = rotulos[i];
-//					/* compara rotulo lido com o do vetor */
-//					if ( tempRotulo.rotulo == rotulo )
-//					{
-//						tempStruct.argumentos.push_back( tempRotulo.endereco );
-//						break;
-//					}
-//				}
-//				
-//			}
-//			/* se nao for instrucao de desvio */
-//			else
-//			{
-//				mArqEntrada.ignore( 1, ' ');
-//				proximo = mArqEntrada.peek();
-//				
-//				/* se tem argumento */
-//				if ( proximo >= '0' && proximo <= '9' )
-//				{
-//					mArqEntrada >> arg;
-//					tempStruct.argumentos.push_back( arg );
-//					proximo = mArqEntrada.peek();
-//					
-//					/* se tem outro argumento */
-//					if ( proximo == ',' )
-//					{
-//						mArqEntrada.ignore( 1, ',' );
-//						mArqEntrada >> arg;
-//						tempStruct.argumentos.push_back( arg );
-//					}
-//				}
-//			}
-//		}
-//		/* rotulos nao resolvidos */
-//		else
-		{
 			tempStruct.argumentos.resize(0);
 			char
-			chinelo[5];
+			chinelo[6];
 			
 			/* le a primeira parte e verica se tem label */
 			mArqEntrada.read( chinelo, 5 );
 			chinelo[5] = '\0';
+			/* strcmp retorna 0 se strings forem iguais */
 			if ( strcmp( chinelo, "     \0" ) )
 			{
 				strcpy( tempRotulo.rotulo, chinelo );
@@ -922,10 +732,10 @@ Mepa::carregaP()
 //					std::cout << "-" << tempRotulo.rotulo << " " << chinelo << "-";
 					
 					/* compara os rotulos (obs: comparacao de string com char*) */
-					if ( !strcmp( tempRotulo.rotulo, chinelo ) )
+					if ( strcmp( tempRotulo.rotulo, chinelo ) == 0 )
 					{
 						/* armazena endereco do rotulo no vetor de argumentos da struct */
-						tempStruct.argumentos.push_back( tempRotulo.endereco );
+						tempStruct.argumentos.push_back( (int) tempRotulo.endereco );
 						break;
 					}
 				}
@@ -936,7 +746,7 @@ Mepa::carregaP()
 				mArqEntrada.ignore( 1, ' ');
 				proximo = mArqEntrada.peek();
 				/* verifica se tem argumento */
-				if ( proximo >= '0' && proximo <= '9' )
+				if ( proximo >= '0' && proximo <= '9' && proximo != '\n' )
 				{
 					mArqEntrada >> arg;
 					tempStruct.argumentos.push_back( arg );
@@ -950,7 +760,6 @@ Mepa::carregaP()
 					}
 				}
 			}
-		}
 		/* armazena struct temporaria em P */
 		
 /**/	std::cout << tempStruct.comando;
