@@ -390,7 +390,7 @@ Mepa::LEIT()
 	s++;
 	proximaInstrucao();
 	
-	M[s] = P[PC].comando;
+	M[s] = P[PC].argumentos[0];
 	proximaInstrucao();
 }
 
