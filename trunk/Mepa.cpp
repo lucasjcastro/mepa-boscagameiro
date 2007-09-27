@@ -148,7 +148,7 @@ void Mepa::executa()
 			case dmem:
 				DMEM(P[PC].argumentos[0]);
 				break;
-			case rptr:
+			case rtpr:
 				RTPR(P[PC].argumentos[0],P[PC].argumentos[1]);
 				break;
 			case crvi:
@@ -442,7 +442,8 @@ void
 Mepa::CRVL( int k, int n )
 {
 	s++;
-	M[s] = M[D[k] + n];
+	int a = M[D[k] + n];
+	M[s] = a; 
 	proximaInstrucao();
 }
 
