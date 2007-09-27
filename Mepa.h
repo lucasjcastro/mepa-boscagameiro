@@ -12,7 +12,7 @@
 
 enum { crct, soma, subt, mult, divi, invr, conj, disj, nega, cmme, cmma, cmig,
 	cmdg, cmeg, cmag, dsvs, dsvf, nada, leit, impr, impl, impc, inpp, amem,
-	para, crvl, armz, chpr, enpr, dmem, rptr, crvi, armi, cren, mosm, rtpr, vazio};
+	para, crvl, armz, chpr, enpr, dmem, rtpr, crvi, armi, cren, mosm, vazio};
 
 struct p
 {
