@@ -133,8 +133,9 @@ Printer::printM( std::vector<int>* pM, int vS )
 		
 		for ( int i = 0; i <= vS; i++ )
 		{
+			arqSaida << '[';
 			arqSaida << std::setfill( '0' ) << std::setw( 5 );
-			arqSaida << '[' << i << "] ";
+			arqSaida << i << "] ";
 			arqSaida << std::setfill( fill );
 			arqSaida << pM->at( i ) << std::endl;
 		}
@@ -145,8 +146,9 @@ Printer::printM( std::vector<int>* pM, int vS )
 		
 		for ( int i = 0; i <= vS; i++ )
 		{
+			std::cout << '[';
 			std::cout << std::setfill( '0' ) << std::setw( 5 );
-			std::cout << '[' << i << "] ";
+			std::cout << i << "] ";
 			std::cout << std::setfill( fill );
 			std::cout << pM->at( i ) << std::endl;
 		}
