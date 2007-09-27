@@ -799,6 +799,11 @@ Mepa::carregaP()
 
 		P[ linha ] = tempStruct;
 		
+		std::cout << tempStruct.comando;
+		for ( unsigned int i=0; i < tempStruct.argumentos.size(); i++)
+		{
+			std::cout << '\t' << tempStruct.argumentos[i];
+		}
 		std::cout << std::endl;
 		
 		/* anda ate o final da linha */
