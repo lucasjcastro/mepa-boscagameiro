@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	numDoArqSaida = 0;
 	
 	Mepa*
-	magaiver;
+	mepa;
 	
 	/* iterador comeca em 1 pq o argv[0] eh o nome do programa */
 	for ( int i = 1; i < argc; i++ )
@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
 			switch ( argv[i][1] )
 			{
 				case 'J':
+					std::cout << "Opcao nao implementada, foi mal! :)" << std::endl;
 					break;
 					
 				case 'D':
@@ -139,7 +140,6 @@ int main(int argc, char *argv[])
 		}
 		else
 		{
-
 			if ( 1 )// verificar se o parametro é do tipo *.mep e iniciar a mepa.
 			{
 				/* verifica se não ha parametros sobrando */
@@ -161,22 +161,22 @@ int main(int argc, char *argv[])
 		}
 	}
 	
-	//iniciar mepa, etc...
-
+	/* alocar a mepa! */
 	if( numDoArqSaida == 0 )
 	{
-		magaiver = new Mepa( argv[numDoArqEntrada], tamD, tamP, tamM );
+		mepa = new Mepa( argv[numDoArqEntrada], tamD, tamP, tamM );
 	}
 	else
 	{
-		magaiver = new Mepa( argv[numDoArqEntrada], argv[numDoArqSaida], tamD, tamP, tamM );
+		mepa = new Mepa( argv[numDoArqEntrada], argv[numDoArqSaida], tamD, tamP, tamM );
 	}
 	
-	//iniciar mepa;
-	magaiver->executa();
+	/* iniciar mepa */
+	mepa->executa();
+	
 	/* desaloca a mepa */
 	delete 
-	magaiver;
+	mepa;
 	
 	return 0;
 }
