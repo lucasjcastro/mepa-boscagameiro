@@ -556,7 +556,7 @@ Mepa::carregaP()
 			/* le a primeira parte e verica se tem label */
 			mArqEntrada.read( chinelo, 5 );
 			chinelo[5] = '\0';
-			/* strcmp retorna 0 se strings forem iguais */
+			
 			if ( strcmp( chinelo, "     \0" ) )
 			{
 				strcpy( tempRotulo.rotulo, chinelo );
@@ -568,6 +568,8 @@ Mepa::carregaP()
 			proximo = mArqEntrada.peek();
 			linha++;
 	}
+	
+	/* volta pro comeco do arquivo */
 	mArqEntrada.seekg( 0, std::ios_base::beg );
 	linha = 0;
 	
@@ -577,13 +579,12 @@ Mepa::carregaP()
 	while ( !mArqEntrada.eof() && linha <= P.size() )
 	{
 			tempStruct.argumentos.resize(0);
-			
-			/* le a primeira parte e verica se tem label */
 
+			/* ignora a parte dos labels */
 			mArqEntrada.ignore( 6 ); 
 			proximo = mArqEntrada.peek();
 			if ( proximo >= '0' && proximo <= '9' )
-			{std::cout << "----" << '\t';
+			{
 				int 
 				value;
 				
@@ -597,143 +598,143 @@ Mepa::carregaP()
 				mArqEntrada >> instrucao;
 //-----------------------------------------------------------------------			
 				if ( instrucao == "AMEM" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = amem;
 				}
 				else if ( instrucao == "ARMI" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = armi;
 				}
 				else if ( instrucao == "ARMZ" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = armz;
 				}
 				else if ( instrucao == "CHPR" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = chpr;
 				}
 				else if ( instrucao == "CMAG" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = cmag;
 				}
 				else if ( instrucao == "CMDG" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = cmdg;
 				}
 				else if ( instrucao == "CMEG" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = cmeg;
 				}
 				else if ( instrucao == "CMIG" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = cmig;
 				}
 				else if ( instrucao == "CMMA" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = cmma;
 				}
 				else if ( instrucao == "CMME" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = cmme;
 				}
 				else if ( instrucao == "CONJ" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = conj;
 				}
 				else if ( instrucao == "CRCT" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = crct;
 				}
 				else if ( instrucao == "CREN" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = cren;
 				}
 				else if ( instrucao == "CRVI" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = crvi;
 				}
 				else if ( instrucao == "CRVL" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = crvl;
 				}
 				else if ( instrucao == "DISJ" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = disj;
 				}
 				else if ( instrucao == "DIVI" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = divi;
 				}
 				else if ( instrucao == "DMEM" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = dmem;
 				}
 				else if ( instrucao == "DSVF" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = dsvf;
 				}
 				else if ( instrucao == "DSVS" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = dsvs;
 				}
 				else if ( instrucao == "ENPR" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = enpr;
 				}
 				else if ( instrucao == "IMPC" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = impc;
 				}
 				else if ( instrucao == "IMPL" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = impl;
 				}
 				else if ( instrucao == "IMPR" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = impr;
 				}
 				else if ( instrucao == "INPP" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = inpp;
 				}
 				else if ( instrucao == "INVR" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = invr;
 				}
 				else if ( instrucao == "LEIT" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = leit;
 				}
 				else if ( instrucao == "MOSM" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = mosm;
 				}
 				else if ( instrucao == "MULT" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = mult;
 				}
 				else if ( instrucao == "NADA" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = nada;
 				}
 				else if ( instrucao == "NEGA" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = nega;
 				}
 				else if ( instrucao == "PARA" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = para;
 				}
 				else if ( instrucao == "RTPR" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = rtpr;
 				}
 				else if ( instrucao == "SOMA" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = soma;
 				}
 				else if ( instrucao == "SUBT" )
-				{std::cout << instrucao << '\t';
+				{
 					tempStruct.comando = subt;
 				}
 //-----------------------------------------------------------------------	
@@ -780,13 +781,16 @@ Mepa::carregaP()
 			else
 			{
 				mArqEntrada.ignore( 1, ' ');
+				
 				proximo = mArqEntrada.peek();
+				
 				/* verifica se tem argumento */
 				if ( proximo >= '0' && proximo <= '9' && proximo != '\n' )
 				{
 					mArqEntrada >> arg;
 					tempStruct.argumentos.push_back( arg );
 					proximo = mArqEntrada.peek();
+					
 					/* verifica se tem outro argumento */
 					if ( proximo == ',' )
 					{
@@ -797,16 +801,8 @@ Mepa::carregaP()
 				}
 			}
 		/* armazena struct temporaria em P */
-
 		P[ linha ] = tempStruct;
-		
-		std::cout << tempStruct.comando;
-		for ( unsigned int i=0; i < tempStruct.argumentos.size(); i++)
-		{
-			std::cout << '\t' << tempStruct.argumentos[i];
-		}
-		std::cout << std::endl;
-		
+
 		/* anda ate o final da linha */
 		mArqEntrada.ignore( 100, '\n' );
 		linha++;
